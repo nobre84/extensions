@@ -126,7 +126,12 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
         }
         self.lbTimeLocation.text = subtitle
         if let rsvp = eventJson["results"][0]["yes_rsvp_count"].int {
-            self.lbCount.text = "\(rsvp) irão"
+            if self.apiStatus == "upcoming" {
+                self.lbCount.text = "\(rsvp) irão"
+            }
+            else {
+                self.lbCount.text = "\(rsvp) foram"
+            }
         }
     }
     
