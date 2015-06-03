@@ -59,8 +59,9 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
         // Perform any setup necessary in order to update the view.
         let eventsEndpoint = "https://api.meetup.com/2/events"
+        let order = self.apiStatus == "upcoming" ? "false" : "true"
         // status: upcoming ou past
-        let eventsParams = ["key":self.apiKey, "member_id": "self", "status": self.apiStatus]
+        let eventsParams = ["key":self.apiKey, "member_id": "self", "status": self.apiStatus, "order": order]
         Alamofire.request(.GET, eventsEndpoint, parameters: eventsParams).responseJSON(options: nil) { (Request, Response, jsonData, error) -> Void in
             if jsonData != nil {
                 let eventsJson = JSON(jsonData!)
