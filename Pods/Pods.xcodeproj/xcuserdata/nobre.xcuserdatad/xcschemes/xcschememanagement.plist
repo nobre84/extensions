@@ -4,27 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-FilterIt-GPUImage.xcscheme</key>
+		<key>Pods-Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-FilterIt.xcscheme</key>
+		<key>Pods-GPUImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Meetups-Alamofire.xcscheme</key>
+		<key>Pods-SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Meetups-SwiftyJSON.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-Meetups.xcscheme</key>
+		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,27 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1E08185BF0147C8127526E16</key>
+		<key>317816494C474AEBCD06B398</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>35A9C283A5783A263248F132</key>
+		<key>3F4CB2B8BBA5A5F259F26B66</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3F852180F1FC2AFC0E432A79</key>
+		<key>4DF9A91F9CDBC10DF30B7814</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9D1A9F65E100F517C840F9A9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E3AC4D85A113AA4B975B401A</key>
+		<key>79A7EAB14BAAB90D054590BC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
