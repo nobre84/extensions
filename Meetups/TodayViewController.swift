@@ -23,6 +23,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
     @IBOutlet weak var lbCount: UILabel!
     @IBOutlet weak var lbTimeLocation: UILabel!
     @IBOutlet weak var tbComments: UITableView!
+    @IBOutlet weak var lcTableHeight: NSLayoutConstraint!
     
     
     override func viewDidLoad() {
@@ -176,10 +177,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
     }
     
     func resizeWidget() {
-        self.tbComments.sizeToFit()
-        var size = self.tbComments.contentSize
-        size.height += self.lbTimeLocation.frame.maxY + 20
-        self.preferredContentSize = size
+        var size = self.tbComments.sizeThatFits(CGSizeMake(self.view.bounds.width, 10000))
+        self.lcTableHeight.constant = size.height
     }
     
     @IBAction func commentAction(sender: AnyObject) {
