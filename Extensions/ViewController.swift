@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     var status = "upcoming"
-    var sharedDefaults = NSUserDefaults(suiteName: "group.br.com.Extension.Meetups.Shared")
+    var sharedDefaults = NSUserDefaults(suiteName: "group.br.com.Extensions.Meetups.Shared")
 
     @IBOutlet weak var tfApiKey: UITextField!
     @IBOutlet weak var segStatus: UISegmentedControl!

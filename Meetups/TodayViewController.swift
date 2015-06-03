@@ -16,7 +16,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
     var apiKey = "1e5a246c44451b7c72d6b33517f6a7e"
     var apiStatus = "upcoming"
     var comments = [JSON]()
-    var sharedDefaults = NSUserDefaults(suiteName: "group.br.com.Extension.Meetups.Shared")
+    var sharedDefaults = NSUserDefaults(suiteName: "group.br.com.Extensions.Meetups.Shared")
     
     // UI
     @IBOutlet weak var lbTitle: UILabel!
