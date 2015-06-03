@@ -23,15 +23,28 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="meetups api key" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QR6-IL-qJy">
-                                <rect key="frame" x="180" y="123" width="240" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="PUX-Of-Q3G"/>
-                                </constraints>
+                                <rect key="frame" x="167" y="123" width="266" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="t9w-dP-2FT">
+                                <rect key="frame" x="286" y="166" width="147" height="29"/>
+                                <segments>
+                                    <segment title="Futuros"/>
+                                    <segment title="Passados"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="fhs-fc-Pc3"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mostrar eventos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TR4-wW-c33">
+                                <rect key="frame" x="167" y="175" width="105" height="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceC-JN-xqZ">
-                                <rect key="frame" x="436" y="123" width="34" height="30"/>
+                                <rect key="frame" x="271" y="210" width="34" height="30"/>
                                 <state key="normal" title="Save">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -43,14 +56,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="QR6-IL-qJy" firstAttribute="top" secondItem="xWO-Q4-Aqh" secondAttribute="bottom" constant="40" id="8dn-Fx-iic"/>
-                            <constraint firstItem="ceC-JN-xqZ" firstAttribute="top" secondItem="QR6-IL-qJy" secondAttribute="top" id="WDX-mH-jzx"/>
+                            <constraint firstItem="ceC-JN-xqZ" firstAttribute="top" secondItem="TR4-wW-c33" secondAttribute="bottom" constant="18" id="BKt-OO-gnj"/>
+                            <constraint firstItem="TR4-wW-c33" firstAttribute="centerY" secondItem="t9w-dP-2FT" secondAttribute="centerY" constant="3.5" id="CQO-xT-M0Y"/>
+                            <constraint firstItem="t9w-dP-2FT" firstAttribute="leading" secondItem="TR4-wW-c33" secondAttribute="trailing" constant="14" id="OED-Uz-JHH"/>
+                            <constraint firstItem="QR6-IL-qJy" firstAttribute="leading" secondItem="TR4-wW-c33" secondAttribute="leading" id="VcQ-FH-rXd"/>
                             <constraint firstAttribute="centerX" secondItem="QR6-IL-qJy" secondAttribute="centerX" id="XGj-eL-koe"/>
                             <constraint firstItem="xWO-Q4-Aqh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="XUB-vf-7wl"/>
-                            <constraint firstItem="ceC-JN-xqZ" firstAttribute="leading" secondItem="QR6-IL-qJy" secondAttribute="trailing" constant="16" id="sat-NV-IDn"/>
+                            <constraint firstAttribute="centerX" secondItem="ceC-JN-xqZ" secondAttribute="centerX" constant="12" id="YSq-sH-LuF"/>
+                            <constraint firstItem="TR4-wW-c33" firstAttribute="top" secondItem="QR6-IL-qJy" secondAttribute="bottom" constant="22" id="cAU-jN-twh"/>
+                            <constraint firstItem="QR6-IL-qJy" firstAttribute="trailing" secondItem="t9w-dP-2FT" secondAttribute="trailing" id="qQZ-6b-pOP"/>
                             <constraint firstAttribute="centerX" secondItem="xWO-Q4-Aqh" secondAttribute="centerX" id="xMu-Uh-rJC"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="segStatus" destination="t9w-dP-2FT" id="2Sh-cG-SiC"/>
                         <outlet property="tfApiKey" destination="QR6-IL-qJy" id="b4g-ld-BKz"/>
                     </connections>
                 </viewController>

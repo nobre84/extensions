@@ -13,9 +13,10 @@ import SwiftyJSON
 
 class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataSource {
     
-    let meetupsSuiteName = "group.br.com.Extension.Meetups.Shared"
     var apiKey = "1e5a246c44451b7c72d6b33517f6a7e"
+    var apiStatus = "upcoming"
     var comments = [JSON]()
+    var sharedDefaults = NSUserDefaults(suiteName: "group.br.com.Extension.Meetups.Shared")
     
     // UI
     @IBOutlet weak var lbTitle: UILabel!
@@ -29,7 +30,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
         // Auto resize cells
         self.tbComments.estimatedRowHeight = 44
         self.tbComments.rowHeight = UITableViewAutomaticDimension
-
+        
         self.resizeWidget()
     }
     
@@ -37,9 +38,12 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
         super.viewDidAppear(animated)
         
         // Carrego a api key compartilhada, se inserida pelo usuário
-        let sharedDefaults = NSUserDefaults(suiteName: meetupsSuiteName)
+        sharedDefaults?.synchronize()
         if let key = sharedDefaults?.stringForKey("apiKey") {
             apiKey = key
+        }
+        if let status = sharedDefaults?.stringForKey("apiStatus") {
+            apiStatus = status
         }
         
         widgetPerformUpdateWithCompletionHandler { (NCUpdateResult) -> Void in
@@ -56,7 +60,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
         // Perform any setup necessary in order to update the view.
         let eventsEndpoint = "https://api.meetup.com/2/events"
         // status: upcoming ou past
-        let eventsParams = ["key":self.apiKey, "member_id": "self", "status": "upcoming"]
+        let eventsParams = ["key":self.apiKey, "member_id": "self", "status": self.apiStatus]
         Alamofire.request(.GET, eventsEndpoint, parameters: eventsParams).responseJSON(options: nil) { (Request, Response, jsonData, error) -> Void in
             if jsonData != nil {
                 let eventsJson = JSON(jsonData!)
