@@ -14,8 +14,7 @@ import SwiftyJSON
 class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataSource {
     
     let meetupsSuiteName = "group.br.com.Extensions.Meetup.Shared"
-    var apiKey = ""
-    let standardApiKey = ""
+    var apiKey = "1e5a246c44451b7c72d6b33517f6a"
     var comments = [AnyObject]()
     
     // UI
@@ -27,44 +26,55 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view from its nib.
+        // Carrego a api key compartilhada, se inserida pelo usuário
         let sharedDefaults = NSUserDefaults(suiteName: meetupsSuiteName)
         if let key = sharedDefaults?.stringForKey("apiKey") {
             apiKey = key
         }
-        else {
-            apiKey = standardApiKey
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        widgetPerformUpdateWithCompletionHandler { (NCUpdateResult) -> Void in
         }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        // Really!!
     }
     
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
         // Perform any setup necessary in order to update the view.
-
-        Alamofire.request(.GET, "http://meetup.com", parameters: ["key":apiKey]).responseJSON(options: nil) { (Request, Response, jsonData, error) -> Void in
-            let json = JSON(jsonData)
-            println(json)
-            completionHandler(NCUpdateResult.NewData)
+        let endpoint = "http://api.meetup.com/2/events"
+        let params = ["key":apiKey, "group_urlname": "MGTi-Zona-da-Mata"]
+        Alamofire.request(.GET, endpoint, parameters: params).responseJSON(options: nil) { (Request, Response, jsonData, error) -> Void in
+            if jsonData != nil {
+                let json = JSON(jsonData!)
+                println(json)
+                completionHandler(NCUpdateResult.NewData)
+            }
+            else {
+                completionHandler(NCUpdateResult.Failed)
+            }
         }
-        
-        // If an error is encountered, use NCUpdateResult.Failed
-        // If there's no update required, use NCUpdateResult.NoData
-        // If there's an update, use NCUpdateResult.NewData
+
+        // Evitando o pior...
+        completionHandler(NCUpdateResult.NoData)
 
     }
     
     // TableView Data Source
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 3
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return nil
+        let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! UITableViewCell
+        cell.textLabel!.text = "Felipe Ferraz (3 dias atrás): BlaBlabla"
+        return cell;
     }
     
     @IBAction func commentAction(sender: AnyObject) {
