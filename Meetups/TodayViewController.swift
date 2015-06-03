@@ -59,9 +59,9 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
         // Perform any setup necessary in order to update the view.
         let eventsEndpoint = "https://api.meetup.com/2/events"
-        let order = self.apiStatus == "upcoming" ? "false" : "true"
+        let desc = self.apiStatus == "upcoming" ? "false" : "true"
         // status: upcoming ou past
-        let eventsParams = ["key":self.apiKey, "member_id": "self", "status": self.apiStatus, "order": order]
+        let eventsParams = ["key":self.apiKey, "member_id": "self", "status": self.apiStatus, "desc": desc]
         Alamofire.request(.GET, eventsEndpoint, parameters: eventsParams).responseJSON(options: nil) { (Request, Response, jsonData, error) -> Void in
             if jsonData != nil {
                 let eventsJson = JSON(jsonData!)
@@ -144,7 +144,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
     // TableView Data Source
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return min(self.comments.count, 1)
+        return max(self.comments.count, 1)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
