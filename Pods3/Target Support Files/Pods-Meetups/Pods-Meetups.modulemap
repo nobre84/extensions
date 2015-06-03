@@ -1,6 +1,0 @@
-framework module Pods_Meetups {
-  umbrella header "Pods-Meetups-umbrella.h"
-
-  export *
-  module * { export * }
-}

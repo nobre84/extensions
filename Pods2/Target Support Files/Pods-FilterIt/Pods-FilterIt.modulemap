@@ -1,6 +1,0 @@
-framework module Pods_FilterIt {
-  umbrella header "Pods-FilterIt-umbrella.h"
-
-  export *
-  module * { export * }
-}
