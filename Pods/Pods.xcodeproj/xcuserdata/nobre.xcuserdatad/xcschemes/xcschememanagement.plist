@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-DateTools.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-GPUImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>00C78E11D9EE59EA9B622815</key>
+		<key>3E24DDC6E80C252460AACE43</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>718A429EF812FF81C5356A81</key>
+		<key>41E3648E867A424EE907B8C3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8765066F964DAC4B6DC92729</key>
+		<key>57C025CFB762FE2CCA470380</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F36AA29CAF55EC2BCEFBDFD7</key>
+		<key>64E1677A7ECA0D36971E15D4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A66422C66E3AED39D2C95663</key>
 		<dict>
 			<key>primary</key>
 			<true/>
