@@ -13,7 +13,7 @@ import SwiftyJSON
 
 class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataSource {
     
-    let meetupsSuiteName = "group.br.com.Extensions.Meetup.Shared"
+    let meetupsSuiteName = "group.br.com.Extension.Meetups.Shared"
     var apiKey = "1e5a246c44451b7c72d6b33517f6a7e"
     var comments = [JSON]()
     
@@ -29,16 +29,19 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
         // Auto resize cells
         self.tbComments.estimatedRowHeight = 44
         self.tbComments.rowHeight = UITableViewAutomaticDimension
+
+        self.resizeWidget()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         // Carrego a api key compartilhada, se inserida pelo usuário
         let sharedDefaults = NSUserDefaults(suiteName: meetupsSuiteName)
         if let key = sharedDefaults?.stringForKey("apiKey") {
             apiKey = key
         }
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+        
         widgetPerformUpdateWithCompletionHandler { (NCUpdateResult) -> Void in
         }
     }
@@ -52,7 +55,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
         // Perform any setup necessary in order to update the view.
         let eventsEndpoint = "https://api.meetup.com/2/events"
-        let eventsParams = ["key":self.apiKey, "group_urlname": "MGTi-Zona-da-Mata"]
+        // status: upcoming ou past
+        let eventsParams = ["key":self.apiKey, "member_id": "self", "status": "upcoming"]
         Alamofire.request(.GET, eventsEndpoint, parameters: eventsParams).responseJSON(options: nil) { (Request, Response, jsonData, error) -> Void in
             if jsonData != nil {
                 let eventsJson = JSON(jsonData!)
@@ -62,7 +66,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
                 
                 if let eventId = eventsJson["results"][0]["id"].string {
                     let commentsEndpoint = "https://api.meetup.com/2/event_comments"
-                    let commentsParams = ["key":self.apiKey, "event_id":"221974971"]
+                    let commentsParams = ["key": self.apiKey, "event_id": eventId]
                     
                     Alamofire.request(.GET, commentsEndpoint, parameters: commentsParams).responseJSON(options: nil) { (Request, Response, jsonData, error) -> Void in
                         if jsonData != nil {
@@ -76,6 +80,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
                                 self.comments = []
                             }
                             self.tbComments.reloadData()
+                            self.resizeWidget()
                             completionHandler(NCUpdateResult.NewData)
 
                         }
@@ -86,8 +91,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
                     
                 }
                 else {
-                    self.lbTitle.text = "Nenhum evento marcado"
-                    self.lbCount.text = ""
+                    self.setupEmptyView()
+                    self.resizeWidget()
                     completionHandler(NCUpdateResult.NewData)
                 }
                 
@@ -122,7 +127,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
     }
     
     func setupEmptyView() {
-        
+        self.lbTitle.text = "Nenhum evento marcado"
+        self.lbCount.text = ""
     }
     
     // TableView Data Source
@@ -135,13 +141,17 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
         let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! UITableViewCell
         if self.comments.count == 0 {
             cell.textLabel!.text = "Nenhum comentário ainda."
-            cell.detailTextLabel!.text = ""
         }
         else {
             let jsonComment = self.comments[indexPath.row]
-            cell.textLabel!.text = jsonComment["member_name"].string! + ": " + jsonComment["comment"].string!
-            let date = NSDate(timeIntervalSince1970:jsonComment["time"].double!)
-            cell.detailTextLabel!.text = date.timeAgoSinceNow()
+            if let name = jsonComment["member_name"].string, let comment = jsonComment["comment"].string, let time = jsonComment["time"].double {
+                let date = NSDate(timeIntervalSince1970:time/1000)
+                let timeAgo = date.timeAgoSinceNow()
+                
+                if let label = cell.textLabel {
+                    label.text = name + ": " + comment + " - " + timeAgo
+                }
+            }
         }
         return cell;
     }
@@ -155,6 +165,13 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
         return dateFormatter.stringFromDate(date)
     }
     
+    func resizeWidget() {
+        self.tbComments.sizeToFit()
+        var size = self.tbComments.contentSize
+        size.height += self.lbTimeLocation.frame.maxY + 20
+        self.preferredContentSize = size
+    }
+    
     @IBAction func commentAction(sender: AnyObject) {
     }
     
@@ -166,4 +183,5 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
             self.extensionContext?.openURL(url, completionHandler: nil)
         }
     }
+    
 }

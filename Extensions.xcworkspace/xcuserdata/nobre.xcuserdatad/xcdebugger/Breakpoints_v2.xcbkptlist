@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meetups/TodayViewController.swift"
-            timestampString = "455043037.658093"
+            timestampString = "455047982.223515"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "widgetPerformUpdateWithCompletionHandler(_:)"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "viewDidAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

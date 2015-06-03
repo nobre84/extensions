@@ -36,29 +36,9 @@
                                     <rect key="frame" x="0.0" y="89" width="328" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFK-xw-dZz">
-                                            <rect key="frame" x="20" y="0.0" width="85" height="30"/>
-                                            <state key="normal" title="Comentar">
-                                                <color key="titleColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="commentAction:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="O40-lv-n0f"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mmk-Fe-jk6">
-                                            <rect key="frame" x="121" y="0.0" width="86" height="30"/>
-                                            <state key="normal" title="Ver todos">
-                                                <color key="titleColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="seeAllAction:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="Jxh-VW-hCV"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oYi-Ve-GZV">
-                                            <rect key="frame" x="223" y="0.0" width="85" height="30"/>
-                                            <state key="normal" title="Configurar">
+                                            <rect key="frame" x="101" y="0.0" width="126" height="30"/>
+                                            <state key="normal" title="Configurar api key">
                                                 <color key="titleColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -69,18 +49,9 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="aFK-xw-dZz" secondAttribute="bottom" id="2jK-O3-Da9"/>
-                                        <constraint firstAttribute="trailing" secondItem="oYi-Ve-GZV" secondAttribute="trailing" constant="20" symbolic="YES" id="6nG-WN-0Nm"/>
-                                        <constraint firstItem="oYi-Ve-GZV" firstAttribute="leading" secondItem="mmk-Fe-jk6" secondAttribute="trailing" constant="16" id="BtD-Vt-Z3a"/>
-                                        <constraint firstItem="mmk-Fe-jk6" firstAttribute="top" secondItem="1Z6-99-v12" secondAttribute="top" id="PbM-Nc-0UG"/>
-                                        <constraint firstItem="mmk-Fe-jk6" firstAttribute="leading" secondItem="aFK-xw-dZz" secondAttribute="trailing" constant="16" id="XxM-Y2-o8C"/>
+                                        <constraint firstAttribute="centerX" secondItem="oYi-Ve-GZV" secondAttribute="centerX" id="Wcy-ml-kta"/>
                                         <constraint firstItem="oYi-Ve-GZV" firstAttribute="top" secondItem="1Z6-99-v12" secondAttribute="top" id="ZDa-fq-ytq"/>
-                                        <constraint firstItem="mmk-Fe-jk6" firstAttribute="width" secondItem="aFK-xw-dZz" secondAttribute="width" id="btE-y2-BF3"/>
-                                        <constraint firstItem="aFK-xw-dZz" firstAttribute="top" secondItem="1Z6-99-v12" secondAttribute="top" id="ci4-Hw-UA4"/>
-                                        <constraint firstItem="oYi-Ve-GZV" firstAttribute="width" secondItem="aFK-xw-dZz" secondAttribute="width" id="oWa-c8-bcN"/>
                                         <constraint firstAttribute="bottom" secondItem="oYi-Ve-GZV" secondAttribute="bottom" id="uFk-zj-9tY"/>
-                                        <constraint firstItem="aFK-xw-dZz" firstAttribute="leading" secondItem="1Z6-99-v12" secondAttribute="leading" constant="20" symbolic="YES" id="wFe-7m-J7f"/>
-                                        <constraint firstAttribute="bottom" secondItem="mmk-Fe-jk6" secondAttribute="bottom" id="yeV-jd-NJ2"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
